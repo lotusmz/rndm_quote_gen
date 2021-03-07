@@ -1,1 +1,1 @@
-a_random_quote_generator-v1
+Small random quote generator using PHP.
