@@ -37,27 +37,39 @@ $quotes[] = array (
 /*
 	Function that receives the array of quotes as a parameter.
 	It obtains a random number and with this number it obtains
-	an element from the quotes array and passes this element to
-	the printQuote function.
+	an element from the quotes array and returns the quote.
 */
 function getRandomQuote($quotes){
 	$num = rand(0, 4);
-	$quote = $quotes[$num];
-	printQuote($quote);
+	return $quotes[$num];
 }
 
 /*
-	Function that receives quote element from the quotes array.
-	It echo's the quote.
+	Function that calls the calls the getRandomQuote function and.
+    echo's the html string for the quote.
 */
-function printQuote($quote){
+function printQuote(){
+    global $quotes;
+    $quote = getRandomQuote($quotes);
 
-	echo "<p class='quote'>".$quote['quote']."</p></br>
-	  <p class='source'>".$quote['source']."
-	  <span class='citation'>".$quote['citation']."
-	  </span><span class='year'>".$quote['year']."</span></p>";
+    $html_string = "<p class='quote'>".$quote['quote']."</p></br>
+                    <p class='source'>".$quote['source'];
 
+    if(!empty($quote['citation'])){
+        $html_string .= "<span class='citation'>".$quote['citation'];
+    }
+
+    if(!empty($quote['citation'])){
+        $html_string .= "</span><span class='year'>".$quote['year']."</span></p>";
+    }
+
+    echo $html_string;
 }
 
-getRandomQuote($quotes);
-?>
+function getRandomColor(){
+    $color_array = array( "#00FFFF", "#7FFFD4", "#DC143C", "#006400", "#FF1493","#4B0082");
+    $num = rand(0, 5);
+
+    echo $color_array[$num];
+}
+
